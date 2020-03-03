@@ -3,7 +3,8 @@
 
 Feature: Testing Random Generator App - UI Tests
 
-  @P0 @smoke
+
+  @Framework_Groundwork_Scenario
   Scenario Outline: generate "<NumOfDates>" random values
     Given Valid user provide following Randomization criteria
       | NumOfDates   | outPutFormat   | customDateFormat   | startDate   | endDate   |
@@ -12,3 +13,6 @@ Feature: Testing Random Generator App - UI Tests
     Examples: provided valid and invalid input
       | NumOfDates | outPutFormat | customDateFormat | startDate | endDate | actualResult | expectedResult |
       | 1          | 2            | 3                | 4         | 5       | a            | e              |
+
+
+
