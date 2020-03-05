@@ -44,7 +44,8 @@ public class SharedDriver extends EventFiringWebDriver {
                         @Value("${ui.acceptance.test.selenium.browser.browserstack}") String browserStack,
                         @Value("${path.chrome.driver}") String chromeDriverPath,
                         BrowserStackProperties browserStackProperties) throws MalformedURLException {
-        super(getRealDriver("default", browserVersion, defaultHubUrl, Integer.valueOf(waitTimeOutSeconds), Boolean.valueOf(browserStack), chromeDriverPath, browserStackProperties));
+
+        super(getRealDriver("", browserVersion, defaultHubUrl, Integer.valueOf(waitTimeOutSeconds), Boolean.valueOf(browserStack), chromeDriverPath, browserStackProperties));
         Runtime.getRuntime().addShutdownHook (CLOSE_THREAD);
     }
 
@@ -121,13 +122,13 @@ public class SharedDriver extends EventFiringWebDriver {
     private static RemoteWebDriver getBrowserStackDriver(final BrowserStackProperties browserStackProperties) throws MalformedURLException {
 
         final DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setCapability("browser", browserStackProperties.browser());
+       /* caps.setCapability("browser", browserStackProperties.browser());
         caps.setCapability("browser_version", browserStackProperties.browserVersion());
         caps.setCapability("os", browserStackProperties.os());
         caps.setCapability("os_version", browserStackProperties.osVersion());
-        caps.setCapability("resolution", browserStackProperties.resolution());
+        caps.setCapability("resolution", browserStackProperties.resolution());*/
 
-        return new RemoteWebDriver(browserStackProperties.url(), caps);
+        return new RemoteWebDriver(new URL(""), caps);
     }
 
 

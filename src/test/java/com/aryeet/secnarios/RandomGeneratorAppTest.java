@@ -3,52 +3,46 @@ package com.aryeet.secnarios;
 
 import com.aryeet.RandomGeneratorApp;
 import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
-import io.restassured.http.Header;
-import io.restassured.http.Headers;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URL;
-import java.net.URLDecoder;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.*;
-import java.util.stream.Stream;
-
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT , classes =  RandomGeneratorApp.class)
 @ContextConfiguration(classes = {  RandomGeneratorApp.class})
+@ActiveProfiles("dev")
+@EnableConfigurationProperties
 @TestPropertySource({
         "classpath:application.properties",
         "classpath:application-${spring.profiles.active}.properties"
 })
-public  class SpringBootBaseIntegrationTest {
-    private static final Logger log = LoggerFactory.getLogger(SpringBootBaseIntegrationTest.class);
+public class RandomGeneratorAppTest {
+    private static final Logger log = LoggerFactory.getLogger(RandomGeneratorAppTest.class);
 
     @Autowired
     private ConfigurableEnvironment env;
+
     private RequestSpecification requestSpecification;
 
     @LocalServerPort
     protected int port;
 
     @Autowired
-    public SpringBootBaseIntegrationTest(@Value("${base.url}") String baseUrl) {
+    public RandomGeneratorAppTest(@Value("${base.url}") String baseUrl) {
+        System.out.println("I am in SpringBootBaseIntegrationTest & baseUrl" + baseUrl);
         RestAssured.baseURI = baseUrl;
         requestSpecification = RestAssured.given().relaxedHTTPSValidation();
     }

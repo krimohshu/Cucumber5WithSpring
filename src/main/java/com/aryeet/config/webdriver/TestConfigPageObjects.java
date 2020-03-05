@@ -6,10 +6,7 @@ import com.aryeet.pages.AppLandingPage;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
@@ -18,10 +15,9 @@ import org.springframework.web.client.RestTemplate;
  * Spring configuration for autowired objects
  */
 @Configuration
-@ComponentScan("com.aryeet")
-@PropertySource( {
-        "classpath:application.properties",
-        "classpath:application-${spring.profiles.active}.properties"
+@PropertySources( {
+        @PropertySource("classpath:application.properties"),
+        @PropertySource("classpath:application-${spring.profiles.active:qa}.properties")
 })
 
 public class TestConfigPageObjects {
@@ -49,7 +45,7 @@ public class TestConfigPageObjects {
 
     @Bean
     public AppLandingPage appLandingPage() {
-        System.out.println("I am into AppLandingPage page " );
+        System.out.println("I am into AppLandingPage page" );
         return new AppLandingPage(environment.getProperty("base.url"), sharedDriver, 30);
     }
 

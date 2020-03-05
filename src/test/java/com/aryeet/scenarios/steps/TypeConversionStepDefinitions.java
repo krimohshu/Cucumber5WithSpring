@@ -1,8 +1,6 @@
 package com.aryeet.scenarios.steps;
 import com.aryeet.model.RandomGeneratorSearchCriteria;
-import com.aryeet.secnarios.SpringBootBaseIntegrationTest;
 import io.cucumber.java.DataTableType;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Map;
 

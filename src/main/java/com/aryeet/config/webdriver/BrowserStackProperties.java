@@ -13,7 +13,7 @@ public class BrowserStackProperties {
     @Autowired
     private Environment environment;
 
-    public String os() {
+   /* public String os() {
         return environment.getProperty("browserstack.os");
     }
 
@@ -39,5 +39,5 @@ public class BrowserStackProperties {
         } catch (final MalformedURLException e) {
             throw new RuntimeException("Unabled to parse browserstack url", e);
         }
-    }
+    }*/
 }
