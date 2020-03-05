@@ -6,6 +6,7 @@ Feature: Testing Random Generator App - UI Tests
 
   @Framework_Groundwork_Scenario @dummytest
   Scenario Outline: generate "<NumOfDates>" random values
+    Given  I execute dates via javaScript
     Given Valid user provide following Randomization criteria
       | NumOfDates   | outPutFormat   | customDateFormat   | startDate   | endDate   |
       | <NumOfDates> | <outPutFormat> | <customDateFormat> | <startDate> | <endDate> |

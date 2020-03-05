@@ -7,6 +7,7 @@ import com.aryeet.secnarios.RandomGeneratorAppTest;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +33,19 @@ public class RandomGenSteps extends AbstractStepDefinition {
    /* @Autowired
     private RandomGeneratorAppTest randomGeneratorAppTest;*/
 
+    @Given("I execute dates via javaScript")
+    public void I_execute_dates_via_javaScript(){
+       /* JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("https://codebeautify.org/dist/1.4/js/generate-random-date.js");*/
+    }
     @Given("Valid user provide following Randomization criteria")
     public void valid_user_provide_following_Randomization(List<RandomGeneratorSearchCriteria> rgscEntry) {
         rgscEntry.stream().forEach(x -> {
         });
 
         appLandingPage.goTo(environment.getProperty("base.url"));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("https://codebeautify.org/dist/1.4/js/generate-random-date.js");
         RandomGeneratorSearchCriteria randomGeneratorSearchCriteria = rgscEntry.get(0);
         appLandingPage.withHowManyDatesToGenerate(randomGeneratorSearchCriteria.getNumOfDates());
         appLandingPage.withDateOutputFormat(randomGeneratorSearchCriteria.getOutPutFormat());
