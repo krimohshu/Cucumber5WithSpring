@@ -19,17 +19,6 @@ public class RandomGeneratorSearchCriteria {
         this.endDate = endDate;
     }
 
-    @Override
-    public String toString() {
-        return "RandomGeneratorSearchCriteria{" +
-                "NumOfDates='" + NumOfDates + '\'' +
-                ", outPutFormat='" + outPutFormat + '\'' +
-                ", customDateFormat='" + customDateFormat + '\'' +
-                ", startDate='" + startDate + '\'' +
-                ", endDate='" + endDate + '\'' +
-                '}';
-    }
-
     public String getNumOfDates() {
         return NumOfDates;
     }
@@ -68,5 +57,15 @@ public class RandomGeneratorSearchCriteria {
 
     public void setEndDate(String endDate) {
         this.endDate = endDate;
+    }
+    @Override
+    public String toString() {
+        return "RandomGeneratorSearchCriteria{" +
+                "NumOfDates='" + NumOfDates + '\'' +
+                ", outPutFormat='" + outPutFormat + '\'' +
+                ", customDateFormat='" + customDateFormat + '\'' +
+                ", startDate='" + startDate + '\'' +
+                ", endDate='" + endDate + '\'' +
+                '}';
     }
 }

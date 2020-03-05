@@ -7,7 +7,7 @@ import java.util.List;
 
 @Component
 public class CommonSearchCriteria {
-   private List<RandomGeneratorSearchCriteria> listOfRandomGeneratorSearchCriteria = new ArrayList<>();
+    private List<RandomGeneratorSearchCriteria> listOfRandomGeneratorSearchCriteria = new ArrayList<>();
 
     public List<RandomGeneratorSearchCriteria> getListOfRandomGeneratorSearchCriteria() {
         return listOfRandomGeneratorSearchCriteria;

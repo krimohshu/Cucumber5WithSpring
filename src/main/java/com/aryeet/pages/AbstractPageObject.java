@@ -2,6 +2,8 @@ package com.aryeet.pages;
 
 import org.openqa.selenium.WebDriver;
 
+import java.util.concurrent.TimeUnit;
+
 public class AbstractPageObject {
     protected final String path;
     protected final WebDriver driver;
@@ -33,5 +35,36 @@ public class AbstractPageObject {
 
     public static int getSmallTimeoutInSeconds() {
         return SMALL_TIMEOUT_IN_SECONDS;
+    }
+
+    public void goTo(final String path) {
+        //  driver.navigate().refresh();
+        getDriver().get(path);
+
+        try {
+            Thread.sleep(1000);
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+       /* int counter =0;
+        while(driver.findElements(By.id("menu-link-dashboard")).isEmpty())
+        {
+            driver.get(path);
+
+            try {
+                Thread.sleep(1000);
+                counter++;
+                if(counter > 15){
+                    break;
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }*/
+        //  getDriver().navigate().to(path);
+        getDriver().manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+        //driver.navigate().refresh();
     }
 }

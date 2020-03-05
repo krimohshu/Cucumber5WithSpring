@@ -1,7 +1,5 @@
 package com.aryeet.config.webdriver;
 
-
-
 import com.aryeet.pages.AppLandingPage;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -27,7 +25,6 @@ public class TestConfigPageObjects {
 
     @Autowired
     private Environment environment;
-
 
     @Autowired
     private SharedDriver sharedDriver;

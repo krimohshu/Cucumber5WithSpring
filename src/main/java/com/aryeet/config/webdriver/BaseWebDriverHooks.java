@@ -1,7 +1,4 @@
 package com.aryeet.config.webdriver;
-
-
-
 import io.cucumber.core.internal.gherkin.ast.Scenario;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
