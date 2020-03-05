@@ -1,6 +1,7 @@
 package com.aryeet.secnarios;
 
 
+import com.aryeet.RandomGeneratorApp;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.http.Header;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -30,6 +32,7 @@ import java.util.stream.Stream;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@ContextConfiguration(classes = {  RandomGeneratorApp.class})
 @TestPropertySource({
         "classpath:application.properties",
         "classpath:application-${spring.profiles.active}.properties"
@@ -39,19 +42,13 @@ public  class SpringBootBaseIntegrationTest {
 
     @Autowired
     private ConfigurableEnvironment env;
-
-
     private RequestSpecification requestSpecification;
 
     @LocalServerPort
     protected int port;
 
-
-
     @Autowired
     public SpringBootBaseIntegrationTest(@Value("${base.url}") String baseUrl) {
-      //  super(baseUrl, version);
-
         RestAssured.baseURI = baseUrl;
         requestSpecification = RestAssured.given().relaxedHTTPSValidation();
     }

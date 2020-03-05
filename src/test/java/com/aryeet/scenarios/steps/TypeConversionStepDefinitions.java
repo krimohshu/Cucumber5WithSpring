@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Value;
 import java.util.Map;
 
 public class TypeConversionStepDefinitions  {
-
-
     @DataTableType
     public RandomGeneratorSearchCriteria rgscEntry(Map<String, String> entry) {
         return new RandomGeneratorSearchCriteria(

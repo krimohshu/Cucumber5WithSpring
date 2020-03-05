@@ -2,9 +2,10 @@ package com.aryeet.model;
 
 import lombok.Getter;
 import lombok.Setter;
+
 public class RandomGeneratorSearchCriteria {
 
-    String  NumOfDates;
+    String NumOfDates;
     String outPutFormat;
     String customDateFormat;
     String startDate;

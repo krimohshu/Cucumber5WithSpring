@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Bean;
 import java.util.Arrays;
 
 @SpringBootApplication
-
 public class RandomGeneratorApp {
     public static void main(String[] args) {
         SpringApplication.run(RandomGeneratorApp.class,args);

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
@@ -17,8 +18,12 @@ import org.springframework.web.client.RestTemplate;
  * Spring configuration for autowired objects
  */
 @Configuration
-@ComponentScan("com.sedex.bdd.automation.sedex.bdd.common.config")
-//@PropertySource(value = {"classpath:properties.${ENV_SYSTEM:qa}/props-for-api-tests.properties", "classpath:properties.${ENV_SYSTEM:qa}/props-for-ui-tests.properties"})
+@ComponentScan("com.aryeet")
+@PropertySource( {
+        "classpath:application.properties",
+        "classpath:application-${spring.profiles.active}.properties"
+})
+
 public class TestConfigPageObjects {
 
    /* @Autowired
@@ -44,6 +49,7 @@ public class TestConfigPageObjects {
 
     @Bean
     public AppLandingPage appLandingPage() {
+        System.out.println("I am into AppLandingPage page " );
         return new AppLandingPage(environment.getProperty("base.url"), sharedDriver, 30);
     }
 

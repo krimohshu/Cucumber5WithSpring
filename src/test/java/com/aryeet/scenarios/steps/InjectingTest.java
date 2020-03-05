@@ -20,11 +20,8 @@ import java.util.List;
 @Component
 public class InjectingTest extends SpringBootBaseIntegrationTest {
     private static final Logger log = LoggerFactory.getLogger(InjectingTest.class);
-
     @Autowired
     private CommonSearchCriteria commonSearchCriteria;
-
-
     public InjectingTest(@Value("${base.url}") String baseUrl) {
         super(baseUrl);
     }

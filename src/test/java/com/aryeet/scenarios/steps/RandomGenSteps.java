@@ -16,7 +16,7 @@ import org.springframework.test.annotation.DirtiesContext;
 
 import java.util.List;
 
-@Ignore
+
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class RandomGenSteps {
     private static final Logger log = LoggerFactory.getLogger(RandomGenSteps.class);
@@ -31,9 +31,9 @@ public class RandomGenSteps {
     public void valid_user_provide_following_Randomization(List<RandomGeneratorSearchCriteria> rgscEntry) {
         rgscEntry.stream().forEach(x-> System.out.println(x));
 
-       // appLandingPage.getDriver();
+        appLandingPage.getDriver();
 
-    //    commonSearchCriteria.setListOfRandomGeneratorSearchCriteria(rgscEntry);
+       commonSearchCriteria.setListOfRandomGeneratorSearchCriteria(rgscEntry);
     }
 
     @Then("{string} result should match {string} expected result on UI")
