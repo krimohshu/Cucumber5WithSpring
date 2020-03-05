@@ -33,11 +33,7 @@ public class RandomGenSteps extends AbstractStepDefinition {
    /* @Autowired
     private RandomGeneratorAppTest randomGeneratorAppTest;*/
 
-    @Given("I execute dates via javaScript")
-    public void I_execute_dates_via_javaScript(){
-       /* JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("https://codebeautify.org/dist/1.4/js/generate-random-date.js");*/
-    }
+
     @Given("Valid user provide following Randomization criteria")
     public void valid_user_provide_following_Randomization(List<RandomGeneratorSearchCriteria> rgscEntry) {
         rgscEntry.stream().forEach(x -> {
@@ -45,7 +41,9 @@ public class RandomGenSteps extends AbstractStepDefinition {
 
         appLandingPage.goTo(environment.getProperty("base.url"));
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("https://codebeautify.org/dist/1.4/js/generate-random-date.js");
+        String val = (String) js.executeScript("window.bridges[\"generate-random-date\"];");
+
+
         RandomGeneratorSearchCriteria randomGeneratorSearchCriteria = rgscEntry.get(0);
         appLandingPage.withHowManyDatesToGenerate(randomGeneratorSearchCriteria.getNumOfDates());
         appLandingPage.withDateOutputFormat(randomGeneratorSearchCriteria.getOutPutFormat());
@@ -60,8 +58,8 @@ public class RandomGenSteps extends AbstractStepDefinition {
         System.out.println();
     }
 
-    @Then("{string} actual result should match {string} expected result on UI")
-    public void result_should_match_expected_result(String actual, String expected) {
+    @Then("result should match {string} expected result on UI")
+    public void result_should_match_expected_result(String expected) {
         String[] ruleInfo = expected.split(";");
         String ruleIndex = ruleInfo[0];
         String ruleCriteria = ruleInfo[1];
