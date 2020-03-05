@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.test.annotation.DirtiesContext;
 
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -51,9 +52,13 @@ public class RandomGenSteps extends AbstractStepDefinition {
         System.out.println();
     }
 
-    @Then("{string} result should match {string} expected result on UI")
-    public void result_should_match_expected_result(String string, String string2) {
+    @Then("{string} actual result should match {string} expected result on UI")
+    public void result_should_match_expected_result(String actual, String expected) {
+        String[] ruleInfo = expected.split(";");
+        String ruleIndex = ruleInfo[0];
+        String ruleCriteria = ruleInfo[1];
 
+        appLandingPage.getresultDataInTextArea();
 
     }
 
