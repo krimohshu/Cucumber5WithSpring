@@ -29,4 +29,44 @@ public class RandomGeneratorSearchCriteria {
                 ", endDate='" + endDate + '\'' +
                 '}';
     }
+
+    public String getNumOfDates() {
+        return NumOfDates;
+    }
+
+    public void setNumOfDates(String numOfDates) {
+        NumOfDates = numOfDates;
+    }
+
+    public String getOutPutFormat() {
+        return outPutFormat;
+    }
+
+    public void setOutPutFormat(String outPutFormat) {
+        this.outPutFormat = outPutFormat;
+    }
+
+    public String getCustomDateFormat() {
+        return customDateFormat;
+    }
+
+    public void setCustomDateFormat(String customDateFormat) {
+        this.customDateFormat = customDateFormat;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
 }

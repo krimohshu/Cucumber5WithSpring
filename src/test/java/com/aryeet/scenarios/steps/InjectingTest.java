@@ -14,13 +14,14 @@ import org.springframework.test.context.ActiveProfiles;
 /*@Ignore
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 @Component*/
-@Component
-@ActiveProfiles("dev")
+/*@Ignore
+@ActiveProfiles("dev")*/
 public class InjectingTest extends RandomGeneratorAppTest {
     private static final Logger log = LoggerFactory.getLogger(InjectingTest.class);
 
-   /* @Autowired
-    private CommonSearchCriteria commonSearchCriteria;*/
+    @Autowired
+    private CommonSearchCriteria commonSearchCriteria;
+
     public InjectingTest(@Value("${base.url}") String baseUrl) {
         super(baseUrl);
     }

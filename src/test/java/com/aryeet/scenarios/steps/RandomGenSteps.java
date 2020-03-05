@@ -24,15 +24,13 @@ public class RandomGenSteps extends AbstractStepDefinition {
     @Autowired
     private AppLandingPage appLandingPage;
 
-    @Autowired
-    private RandomGeneratorAppTest randomGeneratorAppTest;
+   /* @Autowired
+    private RandomGeneratorAppTest randomGeneratorAppTest;*/
 
     @Given("Valid user provide following Randomization criteria")
     public void valid_user_provide_following_Randomization(List<RandomGeneratorSearchCriteria> rgscEntry) {
         rgscEntry.stream().forEach(x-> System.out.println(x));
-
         appLandingPage.getDriver();
-
        commonSearchCriteria.setListOfRandomGeneratorSearchCriteria(rgscEntry);
     }
 

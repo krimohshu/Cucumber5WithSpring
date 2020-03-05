@@ -21,7 +21,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT , classes =  RandomGeneratorApp.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT , classes =  RandomGeneratorApp.class)
 @ContextConfiguration(classes = {  RandomGeneratorApp.class})
 @ActiveProfiles("dev")
 @EnableConfigurationProperties
@@ -29,7 +29,7 @@ import org.springframework.test.context.junit4.SpringRunner;
         "classpath:application.properties",
         "classpath:application-${spring.profiles.active}.properties"
 })
-public class RandomGeneratorAppTest {
+public abstract class RandomGeneratorAppTest {
     private static final Logger log = LoggerFactory.getLogger(RandomGeneratorAppTest.class);
 
     @Autowired
