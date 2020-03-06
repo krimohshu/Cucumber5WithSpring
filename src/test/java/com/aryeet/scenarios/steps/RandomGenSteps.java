@@ -14,7 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.test.annotation.DirtiesContext;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -36,29 +38,34 @@ public class RandomGenSteps extends AbstractStepDefinition {
 
     @Given("Valid user provide following Randomization criteria")
     public void valid_user_provide_following_Randomization(List<RandomGeneratorSearchCriteria> rgscEntry) {
-        rgscEntry.stream().forEach(x -> {
-        });
-
         appLandingPage.goTo(environment.getProperty("base.url"));
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        String val = (String) js.executeScript("window.bridges[\"generate-random-date\"];");
-
+       /* JavascriptExecutor js = (JavascriptExecutor) driver;
+        String val = (String) js.executeScript("window.bridges[\"generate-random-date\"];");*/
 
         RandomGeneratorSearchCriteria randomGeneratorSearchCriteria = rgscEntry.get(0);
-        appLandingPage.withHowManyDatesToGenerate(randomGeneratorSearchCriteria.getNumOfDates());
-        appLandingPage.withDateOutputFormat(randomGeneratorSearchCriteria.getOutPutFormat());
-        appLandingPage.withCustomDateFormat(randomGeneratorSearchCriteria.getCustomDateFormat());
-        appLandingPage.withStartDate(randomGeneratorSearchCriteria.getStartDate());
-        appLandingPage.withSendDate(randomGeneratorSearchCriteria.getEndDate());
+
+        appLandingPage.withHowManyDatesToGenerate(randomGeneratorSearchCriteria.getNumOfDates())
+                .withDateOutputFormat(randomGeneratorSearchCriteria.getOutPutFormat())
+                .withCustomDateFormat(randomGeneratorSearchCriteria.getCustomDateFormat())
+                .withStartDate(randomGeneratorSearchCriteria.getStartDate())
+                .withSendDate(randomGeneratorSearchCriteria.getEndDate());
 
         appLandingPage.setAllTheOptions();
-        //   appLandingPage.getDriver();
-
         commonSearchCriteria.setListOfRandomGeneratorSearchCriteria(rgscEntry);
         System.out.println();
     }
+  //  @Given("Valid user provide following Randomization criteria {string},YYYY-MM-DD hh:mm:ss,YY-MM-DD,{int}-{int}-{int} {int}:{int}:{double}-{int}-{int} {int}:{int}:{int}")
 
-    @Then("result should match {string} expected result on UI")
+    @Given("Valid user provide following Randomization criteria {string},{string},{string},{string},{string}")
+    public void valid_user_provide_following_RandomizationWithList(String NumOfDates, String outPutFormat, String customDateFormat , String startDate, String endDate) {
+        RandomGeneratorSearchCriteria rndg = new RandomGeneratorSearchCriteria(NumOfDates, outPutFormat , customDateFormat , startDate , endDate);
+        List<RandomGeneratorSearchCriteria> listOfDataCreated = new LinkedList<>();
+        listOfDataCreated.add(rndg);
+        valid_user_provide_following_Randomization(listOfDataCreated);
+        listOfDataCreated.remove(rndg);
+    }
+
+        @Then("result should match {string} expected result on UI")
     public void result_should_match_expected_result(String expected) {
         String[] ruleInfo = expected.split(";");
         String ruleIndex = ruleInfo[0];

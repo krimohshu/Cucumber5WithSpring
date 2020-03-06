@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/cucumber",
         glue = {"com.aryeet.scenarios.steps"},
-      //  tags = "(@smoke) and (not @p4 or @ignore or @quotation_wrapped_search)",
+        tags = "(@RULE_ENGINE003) and (not @wip or @ignore)",
         plugin = {
                 "pretty",
                 "html:target/cucumber-report/report/cucumber.html",
