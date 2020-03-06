@@ -1,5 +1,7 @@
 
-# Run application by -DforkMode=never clean test -Dspring.profiles.active=qa
+# Maven Command 
+Tests: `mvn clean test -Dspring.profiles.active=qa`
+Application on 9095 port: `mvn clean spring-boot:run -Dspring.profiles.active=qa`
 
 # Feature of  Framework
 RuleEngine for expected criteria 
