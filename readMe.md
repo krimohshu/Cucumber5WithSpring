@@ -1,13 +1,13 @@
 
-#Run application by -DforkMode=never clean test -Dspring.profiles.active=qa<br />
+# Run application by -DforkMode=never clean test -Dspring.profiles.active=qa
 
-#Feature of  Framework:<br />
+# Feature of  Framework
 RuleEngine for expected criteria 
 Abstract Page and Abstract Step provide the common functionality such as navigation etc <br />
 @DataTableType annotation used to typeRegister ( cucumber-4 to cucmber-5 improvement )
 DSL supporting sdk using builder pattern
 
-#Future Enhancement<br />
+#Future Enhancement
 Data creation can be develop as seperate microservice<br />
 Json manipulation need to be enhanced<br />
 Parllelization need to be added <br />
@@ -21,7 +21,7 @@ Framework tweak to run on Linux, iOS and Windows env <br />
 
 
 
-#Technology/api/plugins<br />
+# Technology/api/plugins<br />
 
 Latest cucumber - 5.4.1<br />
 Spring - 2.0.3.RELEASE<br />
