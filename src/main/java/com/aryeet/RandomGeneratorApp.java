@@ -18,7 +18,6 @@ public class RandomGeneratorApp {
     @Bean
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
-            //System.out.println("Let'sample_jsons inspect the beans provided by Spring Boot:");
             String[] beanNames = ctx.getBeanDefinitionNames();
             Arrays.sort(beanNames);
             for (String beanName : beanNames) {

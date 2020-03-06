@@ -28,39 +28,6 @@ public abstract class BaseWebDriverHooks {
         LOGGER.info("Running scenario: " + getScenarioIdentifier(scenario));
     }
     public void embedScreenshotIfFailed(final Scenario scenario){
-
-        /*if(scenario.isFailed()){
-            LOGGER.info("Scenario failed: " + getScenarioIdentifier(scenario));
-            try {
-            scenario.write("Current Page URL is " +  driver.getCurrentUrl());
-            if (driver.getWrappedDriver() instanceof TakesScreenshot){
-                final byte[] screenshot = driver.getScreenshotAs(OutputType.BYTES);
-                scenario.embed(screenshot, "image/png");
-                try {
-                    final List<LogEntry> logs = driver.manage().logs().get(LogType.BROWSER).getAll();
-                    logs.stream()
-                            .filter(log -> Level.SEVERE == log.getLevel())
-                            .collect(Collectors.toList());
-                    if (logs.size() > 0) {
-                        scenario.write("\n" + logs.stream().map(log -> log.getTimestamp() + " : " + log.getMessage() + "\n")
-                                .collect(joining()));
-                    }
-                }
-                catch (final WebDriverException e) {
-                    // IE does not support fetching browser logs
-                    LOGGER.debug("Error when fetching logs from browser.", e);
-                }
-            }
-            scenario.write(StringEscapeUtils.escapeHtml(driver.getPageSource()));
-        }
-        catch (final Throwable somePlatformsDontSupportScreenshotsOrBrowserHasDied) {
-            somePlatformsDontSupportScreenshotsOrBrowserHasDied.printStackTrace(System.err);
-        }
-        }else {
-            //List<LogEntry> passedLogs = driver.manage().logs().get(LogType.BROWSER).getAll();;
-                scenario.write("Scenario passed on : " +  new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date()));
-                LOGGER.info("Scenario succeeded: " + getScenarioIdentifier(scenario));
-            }*/
     }
 
 

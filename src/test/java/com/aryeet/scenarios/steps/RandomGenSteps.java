@@ -32,10 +32,6 @@ public class RandomGenSteps extends AbstractStepDefinition {
     @Autowired
     private AppLandingPage appLandingPage;
 
-   /* @Autowired
-    private RandomGeneratorAppTest randomGeneratorAppTest;*/
-
-
     @Given("Valid user provide following Randomization criteria")
     public void valid_user_provide_following_Randomization(List<RandomGeneratorSearchCriteria> rgscEntry) {
         appLandingPage.goTo(environment.getProperty("base.url"));
@@ -54,7 +50,6 @@ public class RandomGenSteps extends AbstractStepDefinition {
         commonSearchCriteria.setListOfRandomGeneratorSearchCriteria(rgscEntry);
         System.out.println();
     }
-  //  @Given("Valid user provide following Randomization criteria {string},YYYY-MM-DD hh:mm:ss,YY-MM-DD,{int}-{int}-{int} {int}:{int}:{double}-{int}-{int} {int}:{int}:{int}")
 
     @Given("Valid user provide following Randomization criteria {string},{string},{string},{string},{string}")
     public void valid_user_provide_following_RandomizationWithList(String NumOfDates, String outPutFormat, String customDateFormat , String startDate, String endDate) {

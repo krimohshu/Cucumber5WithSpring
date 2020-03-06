@@ -19,8 +19,6 @@ public class AppLandingPage extends AbstractPageObject {
     protected static final By endDate = By.id("option-end-147fe348");
     protected static final By resultDataInTextArea = By.className("data-wrapper");
 
-
-
     private String strDatesToGenerate= null;
     private String strDateOutputFormat= null;
     private String strCustomDateFormat= null;

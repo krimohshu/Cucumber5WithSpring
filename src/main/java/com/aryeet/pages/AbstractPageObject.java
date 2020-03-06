@@ -47,24 +47,6 @@ public class AbstractPageObject {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-       /* int counter =0;
-        while(driver.findElements(By.id("menu-link-dashboard")).isEmpty())
-        {
-            driver.get(path);
-
-            try {
-                Thread.sleep(1000);
-                counter++;
-                if(counter > 15){
-                    break;
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }*/
-        //  getDriver().navigate().to(path);
         getDriver().manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-        //driver.navigate().refresh();
     }
 }

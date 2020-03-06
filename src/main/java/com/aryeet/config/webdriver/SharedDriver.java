@@ -67,7 +67,6 @@ public class SharedDriver extends EventFiringWebDriver {
             throws MalformedURLException {
         if (REAL_DRIVER == null) {
             if (browserStack) {
-                //https://www.browserstack.com/automate/capabilities
                 REAL_DRIVER = getBrowserStackDriver(browserStackProperties);
             } else {
                 switch (defaultBrowser) {
@@ -120,22 +119,10 @@ public class SharedDriver extends EventFiringWebDriver {
     }
 
     private static RemoteWebDriver getBrowserStackDriver(final BrowserStackProperties browserStackProperties) throws MalformedURLException {
-
         final DesiredCapabilities caps = new DesiredCapabilities();
-       /* caps.setCapability("browser", browserStackProperties.browser());
-        caps.setCapability("browser_version", browserStackProperties.browserVersion());
-        caps.setCapability("os", browserStackProperties.os());
-        caps.setCapability("os_version", browserStackProperties.osVersion());
-        caps.setCapability("resolution", browserStackProperties.resolution());*/
-
         return new RemoteWebDriver(new URL(""), caps);
     }
 
-
-    /* public SharedDriver(){
-         super(new ChromeDriver());
-     }
- */
     @Override
     public void close() {
         if (Thread.currentThread() != CLOSE_THREAD) {

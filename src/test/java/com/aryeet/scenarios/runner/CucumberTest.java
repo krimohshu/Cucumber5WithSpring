@@ -5,7 +5,6 @@ import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
-//com.aryeet.scenarios.steps
 @CucumberOptions(
         features = "src/test/resources/cucumber",
         glue = {"com.aryeet.scenarios.steps"},

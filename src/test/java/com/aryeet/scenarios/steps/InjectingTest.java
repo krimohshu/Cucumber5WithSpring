@@ -11,11 +11,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 
-/*@Ignore
-@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-@Component*/
-/*@Ignore
-@ActiveProfiles("dev")*/
 public class InjectingTest extends RandomGeneratorAppTest {
     private static final Logger log = LoggerFactory.getLogger(InjectingTest.class);
 
