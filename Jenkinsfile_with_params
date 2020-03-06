@@ -42,12 +42,21 @@ pipeline {
 
         stage('Execute Scenario Tests') {
                     steps {
-                        catchError {
+                        /*catchError {
                                             sh ("mvn clean -Dspring.profiles.active=${params.Environment} test -Dcucumber.options='--tags ${params.CucumberTags}'" )
                                         }
                                         sh ('mvn cluecumber-report:reporting')
-                                        echo currentBuild.result
+                                        echo currentBuild.result */
+                         try {
+                                    sh ("mvn clean -Dspring.profiles.active=${params.Environment} test -Dcucumber.options='--tags ${params.CucumberTags}'" )
+                                } catch (err) {
+                                    currentBuild.result = 'FAILURE'
+                                }
+                                 sh ('mvn cluecumber-report:reporting')
+                                   echo currentBuild.result
+
                     }
+
                 }
 
                     stage('Publish Jenkinsfile and Archive Results') {
