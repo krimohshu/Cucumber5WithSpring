@@ -1,0 +1,14 @@
+{
+  "server": "hub-cloud.browserstack.com",
+  "user": "krishanshukla2",
+  "key": "qZqEadYsrCyVkySP8ppY",
+
+  "capabilities": {
+    "name": "Bstack-[Junit] Sample Test",
+    "browserstack.debug": true
+  },
+
+  "environments": [{
+    "browser": "chrome"
+  }]
+}
