@@ -1,6 +1,6 @@
 
 # Maven Command 
-Tests: `mvn clean test -Dspring.profiles.active=qa`
+Tests: `mvn clean test -Dspring.profiles.active=qa` <br />
 Application on 9095 port: `mvn clean spring-boot:run -Dspring.profiles.active=qa`
 
 # Feature of  Framework
@@ -9,7 +9,7 @@ Abstract Page and Abstract Step provide the common functionality such as navigat
 @DataTableType annotation used to typeRegister ( cucumber-4 to cucmber-5 improvement )
 DSL supporting sdk using builder pattern
 
-#Future Enhancement
+# Future Enhancement
 Data creation can be develop as seperate microservice<br />
 Json manipulation need to be enhanced<br />
 Parllelization need to be added <br />
