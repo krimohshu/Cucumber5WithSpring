@@ -35,6 +35,10 @@ public class SharedDriver extends EventFiringWebDriver {
             quitGlobalInstance();
         }
     };
+    //BROWSERSTACK SETTINGS - Please pass "browserStack_krishan" in getRealDriver()
+    public static final String USERNAME = "krishanshukla2";
+    public static final String AUTOMATE_KEY = "qZqEadYsrCyVkySP8ppY";
+    public static final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
 
     @Autowired
     public SharedDriver(@Value("${ui.acceptance.test.selenium.default.browser}") String defaultBrowser,
@@ -46,6 +50,7 @@ public class SharedDriver extends EventFiringWebDriver {
                         BrowserStackProperties browserStackProperties) throws MalformedURLException {
 
         super(getRealDriver("", browserVersion, defaultHubUrl, Integer.valueOf(waitTimeOutSeconds), Boolean.valueOf(browserStack), chromeDriverPath, browserStackProperties));
+       // super(getRealDriver("browserStack_krishan", browserVersion, defaultHubUrl, Integer.valueOf(waitTimeOutSeconds), Boolean.valueOf(browserStack), chromeDriverPath, browserStackProperties));
         Runtime.getRuntime().addShutdownHook (CLOSE_THREAD);
     }
 
@@ -70,7 +75,22 @@ public class SharedDriver extends EventFiringWebDriver {
                 REAL_DRIVER = getBrowserStackDriver(browserStackProperties);
             } else {
                 switch (defaultBrowser) {
-                    case "firefox":
+                    case "browserStack_krishan":
+                       /* REAL_DRIVER = getFirefoxDriver(defaultHubUrl);
+                        REAL_DRIVER.setFileDetector(new LocalFileDetector());*/
+                        DesiredCapabilities caps = new DesiredCapabilities();
+                        caps.setCapability("browser", "Chrome");
+                        caps.setCapability("browser_version", "80.0");
+                        caps.setCapability("os", "OS X");
+                        caps.setCapability("os_version", "Mojave");
+                        caps.setCapability("resolution", "1024x768");
+                        caps.setCapability("name", "Bstack-[Java] Sample Test");
+
+                        REAL_DRIVER = new RemoteWebDriver(new URL(URL), caps);
+
+                        break;
+
+                        case "firefox":
                         REAL_DRIVER = getFirefoxDriver(defaultHubUrl);
                         REAL_DRIVER.setFileDetector(new LocalFileDetector());
                         break;

@@ -8,6 +8,8 @@ RuleEngine for expected criteria
 Abstract Page and Abstract Step provide the common functionality such as navigation etc <br />
 @DataTableType annotation used to typeRegister ( cucumber-4 to cucmber-5 improvement )
 DSL supporting sdk using builder pattern
+Browserstack support
+Parametrize Jenkins file support
 
 # Future Enhancement
 Data creation can be develop as seperate microservice<br />

@@ -1,5 +1,5 @@
 package com.aryeet.scenarios.runner;
-
+/*
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.testng.CucumberOptions;
@@ -12,7 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.Test;*/
 
 /*@Component
 @ContextConfiguration*/
@@ -28,6 +28,7 @@ import org.testng.annotations.Test;
                 "rerun:target/cucumber-report/rerun.txt"
         })*/
 
+/*
 public class RunnerTest {
     private TestNGCucumberRunner testNGCucumberRunner;
 
@@ -37,7 +38,8 @@ public class RunnerTest {
 
     }
 
-    /*@Test(
+    */
+/*@Test(
             groups = "cucumber scenarios",
             description = "Runs Cucumber Scenarios",
             dataProvider = "scenarios")
@@ -45,7 +47,8 @@ public class RunnerTest {
             throws Throwable {
         testNGCucumberRunner.runScenario(pickleEvent.getPickle());
     }
-*/
+*//*
+
     @DataProvider
     public Object[][] scenarios() {
         return testNGCucumberRunner.provideScenarios();
@@ -55,4 +58,4 @@ public class RunnerTest {
     public void tearDownClass() {
         testNGCucumberRunner.finish();
     }
-}
+}*/
