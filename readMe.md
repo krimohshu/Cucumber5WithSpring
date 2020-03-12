@@ -6,10 +6,12 @@ Application on 9095 port: `mvn clean spring-boot:run -Dspring.profiles.active=qa
 # Feature of  Framework
 RuleEngine for expected criteria 
 Abstract Page and Abstract Step provide the common functionality such as navigation etc <br />
-@DataTableType annotation used to typeRegister ( cucumber-4 to cucmber-5 improvement )
-DSL supporting sdk using builder pattern
-Browserstack support
-Parametrize Jenkins file support
+@DataTableType annotation used to typeRegister ( cucumber-4 to cucmber-5 improvement )<br />
+DSL supporting sdk using builder pattern<br />
+Browserstack support<br />
+Parametrize Jenkins file support<br />
+Devtools so springboot pick changes on the fly<br />
+Junit5.4.1 migrated from junit4.12
 
 # Future Enhancement
 Data creation can be develop as seperate microservice<br />
