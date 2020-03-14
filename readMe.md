@@ -40,3 +40,19 @@ Further reading on DataTable Transformer in cucumber5 http://grasshopper.tech/15
 RestAssure , restspecification via springbootRunner. But good if project have seperate API module<br />
 
 
+# Creating Microservices - Development Env  <br />
+## Seeting Dockerise MYSQL on port 3306<br />
+launch(run) docker container docker-mysql <br />
+`run -d -p 3306:3306 --name=docker-mysql --env="MYSQL_ROOT_PASSWORD=root" --env="MYSQL_PASSWORD=root" --env="MYSQL_DATABASE=book_manager" mysql` <br />
+Log into docker container shell <br />
+`docker exec -it docker-mysql bash;`<br />
+Log into MySQL cli<br />
+`mysql -uroot -p`<br />
+Show database using mysql cli<br />
+`show databases;`<br />
+
+**Create data on dockerize mySQL ( file attached in root :  book_manager.sql :<br />
+`docker exec -i docker-mysql mysql -uroot -proot book_manager <book_manager.sql`<br />
+
+     
+
