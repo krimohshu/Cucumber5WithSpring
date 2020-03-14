@@ -51,7 +51,7 @@ Log into MySQL cli<br />
 Show database using mysql cli<br />
 `show databases;`<br />
 
-**Create data on dockerize mySQL ( file attached in root :  book_manager.sql :<br />
+**Create data on dockerize mySQL ( file attached in root :  book_manager.sql, example of query select * from book_manager.author :<br />
 `docker exec -i docker-mysql mysql -uroot -proot book_manager <book_manager.sql`<br />
 
      
