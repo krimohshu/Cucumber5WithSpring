@@ -38,16 +38,16 @@ public class StudentdalApplicationTests {
 
     @Test
     public void testFindStudentById() {
-        Optional<Student> myStudent= studentRepository.findById(1l);
-        System.out.println(myStudent.toString());
+        Student myStudent= studentRepository.findById(1l).get();
+        System.out.println(myStudent);
     }
 
     @Test
     public void testUpdateStudent() {
-        Optional<Student> myStudent= studentRepository.findById(1l);
-        myStudent.ifPresent().setFee(40d);
+        Student myStudent= studentRepository.findById(1l).get();
+        myStudent.setFee(40d);
 
-        studentRepository.save(student);
+        studentRepository.save(myStudent);
     }
 
     @Test

@@ -41,7 +41,7 @@ RestAssure , restspecification via springbootRunner. But good if project have se
 
 
 # Creating Microservices - Development Env  <br />
-## Seeting Dockerise MYSQL on port 3306<br />
+##STEP1 Seeting Dockerise MYSQL on port 3306<br />
 launch(run) docker container docker-mysql <br />
 `run -d -p 3306:3306 --name=docker-mysql --env="MYSQL_ROOT_PASSWORD=root" --env="MYSQL_PASSWORD=root" --env="MYSQL_DATABASE=book_manager" mysql` <br />
 Log into docker container shell <br />
@@ -54,5 +54,12 @@ Show database using mysql cli<br />
 **Create data on dockerize mySQL ( file attached in root :  book_manager.sql, example of query select * from book_manager.author :<br />
 `docker exec -i docker-mysql mysql -uroot -proot book_manager <book_manager.sql`<br />
 
-     
+##STEP2 Creating DAO layer  <br />
+added following table <br />
+`original.sql`  <br />
+`location.sql` <br />
+##STEP3 Added JPA config in main and test, also added models and JPAreporsitory <br />
+Add application.properties jpa config for main-app , also application.properties jpa config in test folder to run springboottest <br />
+
+
 
