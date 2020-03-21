@@ -8,9 +8,10 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/cucumber",
         glue = {"com.aryeet.scenarios.steps"},
-        tags = "(@RULE_ENGINE003) and (not @wip or @ignore)",
+        tags = "(@whichone) and (not @wip or @ignore)",
         plugin = {
-                "pretty",
+                "timeline:target/cucumber-report/report/timeline.html",
+               /* "pretty",*/
                 "html:target/cucumber-report/report/cucumber.html",
                 "json:target/cucumber-report/cucumber.json",
                 "rerun:target/cucumber-report/rerun.txt"

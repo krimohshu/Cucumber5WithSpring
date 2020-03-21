@@ -3,24 +3,20 @@ package com.aryeet.scenarios.steps;
 import com.aryeet.model.CommonSearchCriteria;
 import com.aryeet.model.RandomGeneratorSearchCriteria;
 import com.aryeet.pages.AppLandingPage;
-import com.aryeet.secnarios.RandomGeneratorAppTest;
+import com.aryeet.pages.WhichReviewHomePage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.test.annotation.DirtiesContext;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 
-//@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
+/*@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)*/
 public class RandomGenSteps extends AbstractStepDefinition {
     private static final Logger log = LoggerFactory.getLogger(RandomGenSteps.class);
 
@@ -32,7 +28,23 @@ public class RandomGenSteps extends AbstractStepDefinition {
     @Autowired
     private AppLandingPage appLandingPage;
 
-    @Given("Valid user provide following Randomization criteria")
+    @Autowired
+    private WhichReviewHomePage whichReviewHomePage;
+
+    @Given("Step from {string} in {string} feature file")
+    public void step(String scenario, String file) {
+        System.out.format("Thread ID - %2d - %s from %s feature file.\n",
+                Thread.currentThread().getId(), scenario,file);
+    }
+
+    @Given("user navigate to which? site")
+    public void user_navigate_to_which_site() {
+        log.debug("I am in user_navigate_to_which_site method");
+        whichReviewHomePage.goTo(environment.getProperty("base.url.which.review.home"));
+        log.debug("I am out user_navigate_to_which_site method");
+
+    }
+
     public void valid_user_provide_following_Randomization(List<RandomGeneratorSearchCriteria> rgscEntry) {
         appLandingPage.goTo(environment.getProperty("base.url"));
        /* JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -52,15 +64,15 @@ public class RandomGenSteps extends AbstractStepDefinition {
     }
 
     @Given("Valid user provide following Randomization criteria {string},{string},{string},{string},{string}")
-    public void valid_user_provide_following_RandomizationWithList(String NumOfDates, String outPutFormat, String customDateFormat , String startDate, String endDate) {
-        RandomGeneratorSearchCriteria rndg = new RandomGeneratorSearchCriteria(NumOfDates, outPutFormat , customDateFormat , startDate , endDate);
+    public void valid_user_provide_following_RandomizationWithList(String NumOfDates, String outPutFormat, String customDateFormat, String startDate, String endDate) {
+        RandomGeneratorSearchCriteria rndg = new RandomGeneratorSearchCriteria(NumOfDates, outPutFormat, customDateFormat, startDate, endDate);
         List<RandomGeneratorSearchCriteria> listOfDataCreated = new LinkedList<>();
         listOfDataCreated.add(rndg);
         valid_user_provide_following_Randomization(listOfDataCreated);
         listOfDataCreated.remove(rndg);
     }
 
-        @Then("result should match {string} expected result on UI")
+    @Then("result should match {string} expected result on UI")
     public void result_should_match_expected_result(String expected) {
         String[] ruleInfo = expected.split(";");
         String ruleIndex = ruleInfo[0];

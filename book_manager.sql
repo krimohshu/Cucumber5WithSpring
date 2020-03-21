@@ -23,6 +23,29 @@
 # Dump of table author
 # ------------------------------------------------------------
 
+DROP TABLE IF EXISTS `tvinfo`;
+CREATE TABLE `tvinfo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `mobile` varchar(45) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `birthdate` date NOT NULL,
+  `country` varchar(45) DEFAULT NULL,
+  `background` text DEFAULT NULL,
+  `biography` text DEFAULT NULL,
+  `nickname` varchar(45) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `updated` datetime DEFAULT NULL,
+  `created_by` varchar(45) DEFAULT NULL,
+  `updated_by` varchar(45) DEFAULT NULL,
+  `status` enum('ACTIVE','INACTIVE','DELETED') DEFAULT 'ACTIVE',
+  `photo_url` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
 DROP TABLE IF EXISTS `author`;
 
 CREATE TABLE `author` (

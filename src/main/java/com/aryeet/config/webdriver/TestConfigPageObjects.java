@@ -1,6 +1,7 @@
 package com.aryeet.config.webdriver;
 
 import com.aryeet.pages.AppLandingPage;
+import com.aryeet.pages.WhichReviewHomePage;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,12 @@ public class TestConfigPageObjects {
     public AppLandingPage appLandingPage() {
         System.out.println("I am into AppLandingPage page" );
         return new AppLandingPage(environment.getProperty("base.url"), sharedDriver, 30);
+    }
+
+    @Bean
+    public WhichReviewHomePage whichReviewHomePage() {
+        System.out.println("I am into AppLandingPage page" );
+        return new WhichReviewHomePage(environment.getProperty("base.url"), sharedDriver, 30);
     }
 
 }

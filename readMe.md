@@ -6,10 +6,11 @@ Application on 9095 port: `mvn clean spring-boot:run -Dspring.profiles.active=qa
 # Feature of  Framework
 RuleEngine for expected criteria 
 Abstract Page and Abstract Step provide the common functionality such as navigation etc <br />
-@DataTableType annotation used to typeRegister ( cucumber-4 to cucmber-5 improvement )
-DSL supporting sdk using builder pattern
-Browserstack support
-Parametrize Jenkins file support
+@DataTableType annotation used to typeRegister ( cucumber-4 to cucmber-5 improvement ) <br />
+DSL supporting sdk using builder pattern <br />
+Browserstack support <br />
+Parametrize Jenkins file support <br />
+added threadcount and timeline report in cucumberOptions" <br />
 
 # Future Enhancement
 Data creation can be develop as seperate microservice<br />
@@ -41,7 +42,7 @@ RestAssure , restspecification via springbootRunner. But good if project have se
 
 
 # Creating Microservices - Development Env  <br />
-## Seeting Dockerise MYSQL on port 3306<br />
+## Setting Dockerize MYSQL on port 3306<br />
 launch(run) docker container docker-mysql <br />
 `run -d -p 3306:3306 --name=docker-mysql --env="MYSQL_ROOT_PASSWORD=root" --env="MYSQL_PASSWORD=root" --env="MYSQL_DATABASE=book_manager" mysql` <br />
 Log into docker container shell <br />
@@ -54,5 +55,8 @@ Show database using mysql cli<br />
 **Create data on dockerize mySQL ( file attached in root :  book_manager.sql, example of query select * from book_manager.author :<br />
 `docker exec -i docker-mysql mysql -uroot -proot book_manager <book_manager.sql`<br />
 
+
+# Findings
+duplicate ids e.g. - product_listing_sorter 
      
 
