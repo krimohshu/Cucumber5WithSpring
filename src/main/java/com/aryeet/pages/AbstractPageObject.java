@@ -98,10 +98,6 @@ public class AbstractPageObject {
      * accept By definition and call a timebound selection with appropriate waitProperty
      */
 
-    public void setScreenSizeCheckbox(final List<WebElement> selement, final boolean checked) {
-
-    }
-
     public void setCheckbox(final List<WebElement> selement, final boolean checked) {
 
         WebElement currentDropdownChoice = selement.get(1);
@@ -112,9 +108,7 @@ public class AbstractPageObject {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
         waitForInvisibilityOfSpinner(30);
-
     }
 
     public boolean isChecked(final WebElement element) {
@@ -158,14 +152,14 @@ public class AbstractPageObject {
         final WebDriverWait wait = new WebDriverWait(getDriver(), waitTimeOutSeconds);
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
-protected void genericWait(final int timeInSeconds) {
-    try {
-        Thread.sleep(timeInSeconds*1000);
-    } catch (InterruptedException e) {
-        e.printStackTrace();
-    }
-}
 
+    protected void genericWait(final int timeInSeconds) {
+        try {
+            Thread.sleep(timeInSeconds * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * Replace the identification value at run time so similair object can be manage better
@@ -181,11 +175,9 @@ protected void genericWait(final int timeInSeconds) {
 
     /**
      * Handling spinner
-     * @param waitTimeOutSeconds
      */
 
-
-    public  boolean isElementDisplayed(WebElement element) {
+    public boolean isElementDisplayed(WebElement element) {
         try {
             WebDriverWait wait = new WebDriverWait(this.driver, 1);
             wait.until(ExpectedConditions.visibilityOf(element));
@@ -197,7 +189,7 @@ protected void genericWait(final int timeInSeconds) {
         }
     }
 
-    public  void waitForSpinnerToBeGone(WebElement element, int timeout) {
+    public void waitForSpinnerToBeGone(WebElement element, int timeout) {
         if (isElementDisplayed(element)) {
             new WebDriverWait(this.driver, timeout).until(ExpectedConditions.not(ExpectedConditions.visibilityOf(element)));
         }
@@ -206,12 +198,9 @@ protected void genericWait(final int timeInSeconds) {
     public void waitForInvisibilityOfSpinner(final int waitTimeOutSeconds) {
         waitUntilTrueOrTimeout(ExpectedConditions.invisibilityOfElementLocated(SPINNER), waitTimeOutSeconds);
     }
+
     protected <V> V waitUntilTrueOrTimeout(final ExpectedCondition<V> isTrue, final int waitTimeSeconds) {
         return new WebDriverWait(this.driver, waitTimeSeconds).ignoring(StaleElementReferenceException.class).until(isTrue);
     }
-
-
-
-
 
 }
