@@ -6,7 +6,6 @@ public class TVInfoCard {
 
     private ImportantFeature importantFeature;
 
-
     //itemprop
     private String manufacturer;
    /* itemprop

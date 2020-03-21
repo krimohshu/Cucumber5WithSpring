@@ -3,6 +3,7 @@ package com.aryeet.config.webdriver;
 import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.LocalFileDetector;
@@ -105,8 +106,14 @@ public class SharedDriver extends EventFiringWebDriver {
                     default:
                         // System.out.println("Using default browser");
                         System.out.println("Using default browser");
+                        ChromeOptions options = new ChromeOptions();
+                        options.setCapability("UNEXPECTED_ALERT_BEHAVIOUR", "ACCEPT");
+                        options.setCapability("unexpectedAlertBehaviour", "accept");
+                        options.setCapability("CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR", "ACCEPT");
+                        options.setCapability("UnexpectedAlertBehaviour", "ACCEPT");
+                        options.addArguments("start-maximized");
                         System.setProperty("webdriver.chrome.driver", chromeDriverPath);
-                        REAL_DRIVER  = new ChromeDriver();
+                        REAL_DRIVER  = new ChromeDriver(options);
                         // REAL_DRIVER.DesiredCapabilities.FIREFOX["unexpectedAlertBehaviour"] = "accept"
 
                         REAL_DRIVER.manage().window().maximize();

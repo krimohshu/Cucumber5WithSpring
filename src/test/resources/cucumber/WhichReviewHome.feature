@@ -9,7 +9,7 @@ Feature: Testing Which Review Home Page
     When sort the "<navigateToPage>" page with "<sortOption>" sort-option
     When User set filter conditions
       | ScreenSize              | ScreenType |
-      | SIZE_20_28 ; SIZE_55_60 | OLED ; LCD |
+      | SIZE_32_34 ; SIZE_55_60 | OLED ; LCD |
     When get all the TV reviews on the page
     Examples: provided valid and invalid input
       | navigateToPage | sortOption             |

@@ -34,7 +34,7 @@ public class WhichTVReviewHomeSteps {
     @When("User set filter conditions")
     public void user_set_filter_conditions(ReviewFilter filterConditions) {
 
-
+        whichReviewHomePage.setfilters(filterConditions);
 
     }
 
