@@ -10,7 +10,8 @@ Abstract Page and Abstract Step provide the common functionality such as navigat
 DSL supporting sdk using builder pattern <br />
 Browserstack support <br />
 Parametrize Jenkins file support <br />
-added threadcount and timeline report in cucumberOptions" <br />
+Added cucumber timeline report in cucumberOptions and surefire threadcount<br />
+Genric webElement along with waitProperty has been handled in abstract layer  <br />
 
 # Future Enhancement
 Data creation can be develop as seperate microservice<br />

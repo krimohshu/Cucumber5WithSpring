@@ -1,5 +1,6 @@
 package com.aryeet.scenarios.steps;
 import com.aryeet.model.RandomGeneratorSearchCriteria;
+import com.aryeet.model.ReviewFilter;
 import io.cucumber.java.DataTableType;
 
 import java.util.Map;
@@ -13,6 +14,11 @@ public class TypeConversionStepDefinitions  {
                 entry.get("customDateFormat"),
                 entry.get("startDate"),
                 entry.get("endDate"));
+    }
+@DataTableType
+    public ReviewFilter whichFilterCriteria(Map<String, String> entry) {
+
+        return new ReviewFilter().setReviewFilter(entry);
     }
 
 }

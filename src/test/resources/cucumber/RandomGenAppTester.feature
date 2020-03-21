@@ -9,13 +9,13 @@ Feature: Testing Random Generator App - UI Tests
       | NumOfDates | outPutFormat             | customDateFormat | startDate           | endDate             | expectedResult                               |
       | 11         | YYYY-MM-DD hh:mm:ss      | YY-MM-DD         | 1900-01-01 00:00:00 | 2099-12-31 23:59:59 | RULE_ENGINE001;MATCHCOUNT{outPutFormat}      |
 
-#  @RULE_ENGINE003
-#  Scenario Outline: generate random values and verify rule engine rule no. "<expectedResult>"
-#    Given Valid user provide following Randomization criteria "<NumOfDates>","<outPutFormat>","<customDateFormat>","<startDate>","<endDate>"
-#    Then result should match "<expectedResult>" expected result on UI
-#    Examples: provided valid and invalid input
-#      | NumOfDates | outPutFormat             | customDateFormat | startDate           | endDate             | expectedResult                               |
-#      | 11         | YYYY-MM-DD hh:mm:ss      | YY-MM-DD         | 1900-01-01 00:00:00 | 2099-12-31 23:59:59 | RULE_ENGINE001;MATCHCOUNT{outPutFormat}      |
+  @RULE_ENGINE003
+  Scenario Outline: generate random values and verify rule engine rule no. "<expectedResult>"
+    Given Valid user provide following Randomization criteria "<NumOfDates>","<outPutFormat>","<customDateFormat>","<startDate>","<endDate>"
+    Then result should match "<expectedResult>" expected result on UI
+    Examples: provided valid and invalid input
+      | NumOfDates | outPutFormat             | customDateFormat | startDate           | endDate             | expectedResult                               |
+      | 11         | YYYY-MM-DD hh:mm:ss      | YY-MM-DD         | 1900-01-01 00:00:00 | 2099-12-31 23:59:59 | RULE_ENGINE001;MATCHCOUNT{outPutFormat}      |
 #      | 12         | YYYY-DD-MM hh:mm:ss      | YY-MM-DD         | 1900-01-01 00:00:00 | 2099-12-31 23:59:59 | RULE_ENGINE001;MATCHCOUNT{outPutFormat}      |
 #      | 13         | MM-DD-YYYY hh:mm:ss      | YY-MM-DD         | 1900-01-01 00:00:00 | 2099-12-31 23:59:59 | RULE_ENGINE001;MATCHCOUNT{outPutFormat}      |
 #      | 14         | ISO 8601                 | YY-MM-DD         | 1900-01-01 00:00:00 | 2099-12-31 23:59:59 | RULE_ENGINE001;MATCHCOUNT{outPutFormat}      |
