@@ -115,18 +115,10 @@ public class TvInfoCardPage extends AbstractPageObject {
                             }
 
                             genericWait(1);
-
-                           /* JavascriptExecutor js = (JavascriptExecutor) driver;
-                            //js.executeScript("window.scrollBy(0,200)");
-                            js.executeScript("arguments[0].scrollIntoView();",
-                                    tv.findElement(By.xpath(".//*")).findElement(TV_MANUFACTURER));*/
                         }
 
                     }
                 });
-
-        tvInfoCardMap.entrySet().stream()
-                .forEach(x -> System.out.println(x.getValue()));
 
         return tvInfoCardMap;
     }

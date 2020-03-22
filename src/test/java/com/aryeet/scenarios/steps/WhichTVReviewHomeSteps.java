@@ -81,8 +81,7 @@ public class WhichTVReviewHomeSteps extends AbstractStepDefinition{
         getReviewCardMap = tvInfoCardPage.getAllTVReviewCard();
 
         ruleVerificationDTO.setRuleIndex(ruleEngineIndex.split(";")[0]);
-
-        //Get enum of input provided by user
+        //Get enum of input provided by user- screensize
         String filterStringToMatch = filterConditions.getFilterScreenSize().stream()
                 .map(y -> y.getSizeOption())
                 .collect(Collectors.joining(","));
@@ -99,26 +98,18 @@ public class WhichTVReviewHomeSteps extends AbstractStepDefinition{
                             .getImportantFeature()
                             .getScreenSize());
 
-                    Assert.assertTrue(allTVSizeType.contains(screensizetest.getValue()
-                            .getImportantFeature()
-                            .getScreenSize()));
-
-
-
                     embedTextInReport("Runtime screensize: " + screensizetest.getValue()
                             .getImportantFeature()
                             .getScreenSize() + " vs user expecting size in " + allTVSizeType);
                 });
 
-
-
+        //Get enum of input provided by user - screentype
         String filterStringToMatchForTvType = filterConditions.getFilterScreenType().stream()
                 .map(y -> y.getScreenTypeOption())
                 .collect(Collectors.joining(","));
 
+        //convert enum to screen type e.g. OLED, LCD etc
         String allTVTypeType = StringUtils.getTVTypeBasedOnInput(filterStringToMatchForTvType);
-
-        //   String allTVSizeType = StringUtils.getTVsizeBasedOnInpu(filterStringToMatch);
 
         getReviewCardMap.entrySet().stream()
                 .filter(y -> y != null && y.getValue() != null && y.getValue().getImportantFeature() != null)
@@ -126,10 +117,6 @@ public class WhichTVReviewHomeSteps extends AbstractStepDefinition{
                     softly.assertThat(allTVTypeType).contains(screentypetest.getValue()
                             .getImportantFeature()
                             .getScreenType());
-
-                    Assert.assertTrue(allTVTypeType.contains(screentypetest.getValue()
-                            .getImportantFeature()
-                            .getScreenType()));
 
                     embedTextInReport("Runtime ScreenType: " + screentypetest.getValue()
                             .getImportantFeature()

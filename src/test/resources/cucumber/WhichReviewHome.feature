@@ -14,9 +14,9 @@ Feature: Testing Which? TV Review Home Page
     Examples: provided valid and invalid input
       | navigateToPage | sortOption             | ruleEngineIndex                                                                       |
       | TVhome         | PRICE_LOW_TO_HIGH      | RuleEngine_001; Filtered result should have selected ScreenSize only                  |
-#     |  TVhome          | PRICE_LOW_TO_HIGH      | RuleEngine_002; Filtered result should have selected ScreenType only                  |
       | TVhome         | MOST_RECENTLY_LAUNCHED | RuleEngine_001+002; Filtered result should have selected ScreenSize & ScreenType only |
-#     | MobileHome           | MOST_RECENTLY_LAUNCHED | RuleEngine_001; Filtered result should have selected ScreenSize only                  |
+#     | TVhome         | PRICE_LOW_TO_HIGH      | RuleEngine_002; Filtered result should have selected ScreenType only                  |
+#     | MobileHome     | MOST_RECENTLY_LAUNCHED | RuleEngine_001; Filtered result should have selected ScreenSize only                  |
 #     | home           | MOST_RECENTLY_LAUNCHED | RuleEngine_002; Filtered result should have selected ScreenType only                  |
 
 
