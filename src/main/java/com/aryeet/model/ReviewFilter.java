@@ -1,8 +1,6 @@
 package com.aryeet.model;
 
-import javax.swing.text.html.Option;
 import java.util.*;
-import java.util.stream.Collectors;
 
 
 public class ReviewFilter {

@@ -6,9 +6,9 @@
 
     <groupId>com.aryeet</groupId>
     <artifactId>RandomGenApp</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
-    <name>RandomGenApp</name>
+    <name>CucumberAutomationApp</name>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -282,7 +282,7 @@
                     <target>8</target>
                 </configuration>
             </plugin>
-            <plugin>
+            <!--<plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>dockerfile-maven-plugin</artifactId>
                 <version>1.3.6</version>
@@ -292,7 +292,7 @@
                         <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
                     </buildArgs>
                 </configuration>
-            </plugin>
+            </plugin>-->
         </plugins>
     </build>
 

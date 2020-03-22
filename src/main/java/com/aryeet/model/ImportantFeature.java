@@ -1,8 +1,5 @@
 package com.aryeet.model;
 
-import org.springframework.stereotype.Component;
-
-
 public class ImportantFeature {
 
     private String screenSize;

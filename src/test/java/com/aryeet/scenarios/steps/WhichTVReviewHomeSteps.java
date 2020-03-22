@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 
 public class WhichTVReviewHomeSteps extends AbstractStepDefinition{
 
-    private static final Logger log = LoggerFactory.getLogger(RandomGenSteps.class);
+    private static final Logger log = LoggerFactory.getLogger(WhichTVReviewHomeSteps.class);
 
     @Autowired
     Environment environment;
