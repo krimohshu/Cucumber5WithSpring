@@ -14,6 +14,7 @@ public class WhichReviewHomePage extends AbstractPageObject {
     private static final By SORTBY_DROPDOWN = By.id("product_listing_sorter");
     private static final By DATA_WHICH_BUTTON_SCREENSIZE = By.cssSelector("button[data-which-button='screen_size-filter']");
     private static final By DATA_WHICH_BUTTON_SCREENTYPE = By.cssSelector("button[data-which-button='screen_type-filter']");
+    private static final By DONE_BUTTON = By.cssSelector("button[data-which-id='done-button']");
     private static final By DROPDOWN_CHOICES = By.cssSelector("label[for='_CSS_VALUE_']");
     private static final By SCREENSIZE_CHECKBOX = By.id("_ID_VALUE_");
     public static final String PATH = "/";
@@ -43,6 +44,10 @@ public class WhichReviewHomePage extends AbstractPageObject {
                 .forEach(checkScreenSizeOption -> {
                     setCheckbox(getCssSelectorWithValue(DROPDOWN_CHOICES, checkScreenSizeOption.getScreenTypeOption()), true);
                 });
+
+      /*  waitForInvisibilityOfSpinner(30);
+        driver.findElement(DONE_BUTTON).click();*/
+        clickFilterDropDown(DATA_WHICH_BUTTON_SCREENTYPE);
     }
 
     private void clickFilterDropDown(By dropDownType) {
