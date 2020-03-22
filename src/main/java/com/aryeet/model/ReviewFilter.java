@@ -81,5 +81,12 @@ public class ReviewFilter {
 
     }
 
-
+    @Override
+    public String toString() {
+        return "ReviewFilter{" +
+                "filterScreenSize=" + filterScreenSize +
+                ", filterScreenType=" + filterScreenType +
+                ", filterTvFeatures=" + filterTvFeatures +
+                '}';
+    }
 }

@@ -1,21 +1,28 @@
 package com.aryeet.scenarios.steps;
 
-import com.aryeet.RandomGeneratorApp;
 import com.aryeet.config.webdriver.SharedDriver;
+import io.cucumber.java.Scenario;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.ConfigFileApplicationContextInitializer;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestPropertySource;
 
-@ActiveProfiles("dev")
-@ContextConfiguration(classes = RandomGeneratorApp.class, initializers = { ConfigFileApplicationContextInitializer.class })
-@TestPropertySource({
-        "classpath:application.properties",
-        "classpath:application-${spring.profiles.active}.properties"
-})
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public abstract class AbstractStepDefinition {
-
+    protected Scenario scenario;
     @Autowired
     SharedDriver driver;
+
+    public void before(Scenario scenario) {
+        this.scenario = scenario;
+    }
+
+    protected void embedTextInReport(final String text) {
+        scenario.write(text + "\n");
+    }
+
+    protected void logTimeOnReport(){
+        scenario.write("Step Executed on : " +  new SimpleDateFormat("HH:mm:ss dd/MM/yyyy").format(new Date()));
+
+    }
+
 }

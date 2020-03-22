@@ -20,4 +20,10 @@ public enum ScreenSize {
         return sizeOption;
     }
 
+    @Override
+    public String toString() {
+        return "ScreenSize{" +
+                "sizeOption='" + sizeOption + '\'' +
+                '}';
+    }
 }

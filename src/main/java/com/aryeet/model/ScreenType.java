@@ -16,4 +16,11 @@ public enum ScreenType {
     public String getScreenTypeOption() {
         return screenTypeOption;
     }
+
+    @Override
+    public String toString() {
+        return "ScreenType{" +
+                "screenTypeOption='" + screenTypeOption + '\'' +
+                '}';
+    }
 }

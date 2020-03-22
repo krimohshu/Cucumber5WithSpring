@@ -7,11 +7,14 @@ import com.aryeet.pages.TvInfoCardPage;
 import com.aryeet.pages.WhichReviewHomePage;
 import com.aryeet.rules.RuleVerificationDTO;
 import com.aryeet.util.StringUtils;
+import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.java.hu.Ha;
 import org.assertj.core.api.SoftAssertions;
+import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class WhichTVReviewHomeSteps {
+public class WhichTVReviewHomeSteps extends AbstractStepDefinition{
 
     private static final Logger log = LoggerFactory.getLogger(RandomGenSteps.class);
 
@@ -41,9 +44,19 @@ public class WhichTVReviewHomeSteps {
     Map<Integer, TVInfoCard> getReviewCardMap = new HashMap<>();
     ReviewFilter filterConditions = null;
 
+    @Before
+    public void before(final Scenario scenario) {
+        super.before(scenario);
+    }
+
     @Given("user navigate to {string} page")
     public void user_navigate_to_page(String goToPage) {
         whichReviewHomePage.goTo(environment.getProperty("base.url.which.review.home"));
+    }
+
+    @Given("updating the reporting in framework")
+    public void report() {
+        embedTextInReport("this is krishan testing logging");
     }
 
     @When("sort the {string} page with {string} sort-option")
@@ -53,50 +66,77 @@ public class WhichTVReviewHomeSteps {
 
     @When("User set filter conditions")
     public void user_set_filter_conditions(ReviewFilter filterConditions) {
-        this.filterConditions = filterConditions;
+
         whichReviewHomePage.setfilters(filterConditions);
+        this.filterConditions = filterConditions;
         ruleVerificationDTO.setReviewFilter(filterConditions);
+        embedTextInReport("Filter Conditions: " + filterConditions.toString());
     }
 
     @Then("verify filtered result of TV review products pass {string} rule")
     public void verify_filtered_result_of_TV_review_products_pass(String ruleEngineIndex) {
         SoftAssertions softly = new SoftAssertions();
 
+        //Get All the tv product cards
+        getReviewCardMap = tvInfoCardPage.getAllTVReviewCard();
+
+        ruleVerificationDTO.setRuleIndex(ruleEngineIndex.split(";")[0]);
+
+        //Get enum of input provided by user
         String filterStringToMatch = filterConditions.getFilterScreenSize().stream()
                 .map(y -> y.getSizeOption())
                 .collect(Collectors.joining(","));
 
+        //convert enum to screen size e.g. screen_32_34 will be 32-inches, 33-inches, 34-inches
         String allTVSizeType = StringUtils.getTVsizeBasedOnInpu(filterStringToMatch);
 
-
-        //Get All the tv product cards
-        getReviewCardMap = tvInfoCardPage.getAllTVReviewCard();
-        ruleVerificationDTO.setRuleIndex(ruleEngineIndex.split(";")[0]);
-
+        //Verify using soft assertion
         getReviewCardMap.entrySet().stream()
-                .filter(y -> y !=null && y.getValue() !=null && y.getValue().getImportantFeature()!= null)
+                .filter(y -> y != null && y.getValue() != null && y.getValue().getImportantFeature() != null)
                 .forEach(screensizetest -> {
+
                     softly.assertThat(allTVSizeType).contains(screensizetest.getValue()
                             .getImportantFeature()
                             .getScreenSize());
+
+                    Assert.assertTrue(allTVSizeType.contains(screensizetest.getValue()
+                            .getImportantFeature()
+                            .getScreenSize()));
+
+
+
+                    embedTextInReport("Runtime screensize: " + screensizetest.getValue()
+                            .getImportantFeature()
+                            .getScreenSize() + " vs user expecting size in " + allTVSizeType);
                 });
 
 
-        String finalTVTypeString = filterConditions.getFilterScreenType().stream()
+
+        String filterStringToMatchForTvType = filterConditions.getFilterScreenType().stream()
                 .map(y -> y.getScreenTypeOption())
                 .collect(Collectors.joining(","));
 
-     //   String allTVSizeType = StringUtils.getTVsizeBasedOnInpu(filterStringToMatch);
+        String allTVTypeType = StringUtils.getTVTypeBasedOnInput(filterStringToMatchForTvType);
 
-
+        //   String allTVSizeType = StringUtils.getTVsizeBasedOnInpu(filterStringToMatch);
 
         getReviewCardMap.entrySet().stream()
-                .filter(y -> y !=null && y.getValue() !=null && y.getValue().getImportantFeature()!= null)
+                .filter(y -> y != null && y.getValue() != null && y.getValue().getImportantFeature() != null)
                 .forEach(screentypetest -> {
-                    softly.assertThat(finalTVTypeString).contains(screentypetest.getValue()
+                    softly.assertThat(allTVTypeType).contains(screentypetest.getValue()
                             .getImportantFeature()
                             .getScreenType());
+
+                    Assert.assertTrue(allTVTypeType.contains(screentypetest.getValue()
+                            .getImportantFeature()
+                            .getScreenType()));
+
+                    embedTextInReport("Runtime ScreenType: " + screentypetest.getValue()
+                            .getImportantFeature()
+                            .getScreenType() + " vs user expecting type in " + allTVTypeType);
                 });
+
+        softly.assertAll();
     }
 
     @When("get all the TV reviews on the page")

@@ -10,9 +10,9 @@ import java.util.Arrays;
 
 @SpringBootApplication
 @ComponentScan("com.aryeet")
-public class RandomGeneratorApp {
+public class CucumberAutomationApp {
     public static void main(String[] args) {
-        SpringApplication.run(RandomGeneratorApp.class,args);
+        SpringApplication.run(CucumberAutomationApp.class,args);
     }
 
     @Bean

@@ -4,6 +4,8 @@ import com.aryeet.model.CommonSearchCriteria;
 import com.aryeet.model.RandomGeneratorSearchCriteria;
 import com.aryeet.pages.AppLandingPage;
 import com.aryeet.pages.WhichReviewHomePage;
+import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.slf4j.Logger;
@@ -30,6 +32,11 @@ public class RandomGenSteps extends AbstractStepDefinition {
 
     @Autowired
     private WhichReviewHomePage whichReviewHomePage;
+
+    @Before
+    public void before(final Scenario scenario) {
+        super.before(scenario);
+    }
 
     @Given("Step from {string} in {string} feature file")
     public void step(String scenario, String file) {

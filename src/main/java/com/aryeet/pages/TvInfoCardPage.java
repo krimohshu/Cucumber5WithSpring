@@ -48,6 +48,10 @@ public class TvInfoCardPage extends AbstractPageObject {
     }
 
     public Map<Integer, TVInfoCard> getAllTVReviewCard() {
+        driver.navigate().refresh();
+        genericWait(5);
+
+        //Get all the information of all the product - later overload this method with constraint parameter
         List<WebElement> elementsAllTVProductCard = driver.findElements(TV_PRODUCT_CARD_ITEM);
         AtomicInteger atomicCounter = new AtomicInteger(0);
 
@@ -57,9 +61,12 @@ public class TvInfoCardPage extends AbstractPageObject {
                     try {
                         tvInfoCard.setManufacturer(tv.findElement(By.xpath(".//*")).findElement(TV_MANUFACTURER).getText());
                         tvInfoCard.setModel(tv.findElement(By.xpath(".//*")).findElement(TV_MODEL).getText());
+                        genericWait(1);
                         tvInfoCard.setProductImage(tv.findElement(By.xpath(".//*")).findElement(PRODUCT_IMAGE).getAttribute("src"));
+
                         tvInfoCard.setProductScoreValue(tv.findElement(By.xpath(".//*")).findElement(PRODUCT_SCORE_VALUE).getText());
                         tvInfoCard.setProductScoreLabel(tv.findElement(By.xpath(".//*")).findElement(PRODUCT_SCORE_LABEL).getText());
+
                         tvInfoCard.setProductpercentage(tv.findElement(By.xpath(".//*")).findElement(PRODUCT_PERCENTAGE).getAttribute("fill-rule"));
                         tvInfoCard.setReviewDate(tv.findElement(By.xpath(".//*")).findElement(TESTEDDATE).getText());
 
@@ -69,12 +76,12 @@ public class TvInfoCardPage extends AbstractPageObject {
                                 tv.findElement(By.xpath(".//*")).findElements(IMPORTANT_FEATURE).get(2).getText()
                         ));
 
-                        //     tvInfoCard.setProductAmount(tv.findElement(By.xpath(".//*")).findElement(PRODUCT_AMOUNT).getText());
-                        //     tvInfoCard.setViewRetailer(tv.findElement(By.xpath(".//*")).findElement(VIEW_RETAILER).getText());
-                        //    tvInfoCard.setCompareText(tv.findElement(By.xpath(".//*")).findElement(COMPARE).getText());
-                        //    tvInfoCard.setCompareCheckBox(tv.findElement(By.xpath(".//*")).findElement(COMPARECHECKBOX).isSelected());
+//                        tvInfoCard.setProductAmount(tv.findElement(By.xpath(".//*")).findElement(PRODUCT_AMOUNT).getText());
+//                        tvInfoCard.setViewRetailer(tv.findElement(By.xpath(".//*")).findElement(VIEW_RETAILER).getText());
+//                        tvInfoCard.setCompareText(tv.findElement(By.xpath(".//*")).findElement(COMPARE).getText());
+//                        tvInfoCard.setCompareCheckBox(tv.findElement(By.xpath(".//*")).findElement(COMPARECHECKBOX).isSelected());
                     } catch (Exception nse) {
-                        LOGGER.info("error to locate tv revie product" + atomicCounter.get() + tvInfoCard.toString());
+                        LOGGER.info("error to locate tv review product" + atomicCounter.get() + tvInfoCard.toString());
                     } finally {
 
                         tvInfoCardMap.put(atomicCounter.incrementAndGet(), tvInfoCard);
@@ -103,16 +110,11 @@ public class TvInfoCardPage extends AbstractPageObject {
                                 case 35:
                                     js.executeScript("window.scrollBy(0,1500)");
                                     break;
-                             /*   case 40:
-                                    js.executeScript("window.scrollBy(0,1700)");
-                                    break;
-                                case 45:
-                                    js.executeScript("window.scrollBy(0,1900)");
-                                    break;*/
+                                default:
+
                             }
 
-                            genericWait(3);
-
+                            genericWait(1);
 
                            /* JavascriptExecutor js = (JavascriptExecutor) driver;
                             //js.executeScript("window.scrollBy(0,200)");
