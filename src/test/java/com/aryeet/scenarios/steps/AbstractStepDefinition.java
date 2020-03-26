@@ -3,6 +3,7 @@ package com.aryeet.scenarios.steps;
 import com.aryeet.config.webdriver.SharedDriver;
 import io.cucumber.java.Scenario;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,6 +24,11 @@ public abstract class AbstractStepDefinition {
     protected void logTimeOnReport(){
         scenario.write("Step Executed on : " +  new SimpleDateFormat("HH:mm:ss dd/MM/yyyy").format(new Date()));
 
+    }
+
+    protected String createEndPoint(String baseURl, String apiRelativeEndPoint , String pathParam, String requestParam , String version ){
+
+        return  baseURl + apiRelativeEndPoint + pathParam + version;
     }
 
 }

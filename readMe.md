@@ -2,8 +2,14 @@
 Tests: `mvn clean test -Dspring.profiles.active=qa` <br />
 Application on 9095 port: `mvn clean spring-boot:run -Dspring.profiles.active=qa`
 
+# RESTapi Automation Information
+Test the CRUD  RESTaoi functionality of http://dummy.restapiexample.com/<br />
+
+
+
+# UI Automation Information
 # Information of implemented scenario
-To test search functionality of https://www.which.co.uk/reviews/televisions
+To test search functionality of https://www.which.co.uk/reviews/televisions <br />
 User can provide a combination of filter on Which? TV review page. User should not need to implement code for different filters input or order/combination of filters.(screensize, screentype, features etc) <br />
 User can independently sort the result in any order. <br />
 User input closely mimic the enum of different choices objects( checkbox, dropdown etc).<br />
