@@ -1,7 +1,10 @@
 package com.aryeet.scenarios.steps;
 
+import com.aryeet.api.request.CommonRequestSpecDto;
+import com.aryeet.api.request.HttpOperations;
 import com.aryeet.config.webdriver.SharedDriver;
 import io.cucumber.java.Scenario;
+import io.restassured.response.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 
@@ -26,9 +29,10 @@ public abstract class AbstractStepDefinition {
 
     }
 
-    protected String createEndPoint(String baseURl, String apiRelativeEndPoint , String pathParam, String requestParam , String version ){
+    protected String createEndPoint(String baseURl, String apiRelativeEndPoint , String pathParam, String requestParam  ){
 
-        return  baseURl + apiRelativeEndPoint + pathParam + version;
+        return  baseURl + apiRelativeEndPoint + pathParam ;
     }
+
 
 }

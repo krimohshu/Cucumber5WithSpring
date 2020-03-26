@@ -1,6 +1,8 @@
 package com.aryeet.scenarios.steps;
 
 import com.aryeet.CucumberAutomationApp;
+import com.aryeet.api.request.CommonRequestSpecDto;
+import com.aryeet.api.request.HttpOperations;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.restassured.RestAssured;
@@ -8,6 +10,8 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -31,6 +35,7 @@ import org.springframework.test.context.junit4.SpringRunner;
         "classpath:application-${spring.profiles.active}.properties"
 })
 public class CucumberContextConfiguration {
+    private static final Logger log = LoggerFactory.getLogger(CucumberContextConfiguration.class);
 
     @Autowired
     private ConfigurableEnvironment env;
@@ -108,6 +113,32 @@ public class CucumberContextConfiguration {
         return endpoint;
     }
 
+    protected Response getResponse(CommonRequestSpecDto request, HttpOperations ops){
+        Response response=null;
+
+        switch (ops) {
+            case GET:
+                log.info("GET Call : " + request.getEndPoint());
+                response = requestSpecification.get(request.getEndPoint());
+                break;
+            case PUT:
+                log.debug("PUT Call : " + request.getEndPoint());
+                response = requestSpecification.put(request.getEndPoint());
+                break;
+            case POST:
+                log.debug("POST Call : " + request.getEndPoint());
+                response = requestSpecification.post(request.getEndPoint());
+                break;
+            case PATCH:
+                log.debug("PATCH Call : " + request.getEndPoint());
+                response = requestSpecification.patch(request.getEndPoint());
+                break;
+            case DELETE:
+                break;
+        }
+
+        return response;
+    }
     @Given("hi")
     public void hi(){
 

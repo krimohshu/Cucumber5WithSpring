@@ -1,18 +1,22 @@
 package com.aryeet.scenarios.steps;
 
-import com.aryeet.CucumberAutomationApp;
+import com.aryeet.api.model.Employee;
+import com.aryeet.api.model.EmployeeListWithStatus;
 import com.aryeet.api.request.CommonRequestSpecDto;
+import com.aryeet.api.request.HttpOperations;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.restassured.response.Response;
 import org.assertj.core.api.SoftAssertions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.env.Environment;
-import org.springframework.test.context.ContextConfiguration;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class RestAPISteps extends AbstractStepDefinition {
 
@@ -23,10 +27,12 @@ public class RestAPISteps extends AbstractStepDefinition {
 
 
     @Autowired
-    private CucumberContextConfiguration cucumberContextConfiguration;
+    private CucumberContextConfiguration cucumberCtx;
 
     @Autowired
     private CommonRequestSpecDto commonRequestSpecDto;
+
+    private Response response;
 
     @Before
     public void before(final Scenario scenario) {
@@ -34,16 +40,17 @@ public class RestAPISteps extends AbstractStepDefinition {
     }
 
 
-    @Given("user call following restapi {string} of {string} with {string} page")
-    public void user_Call_Following_Restapi(String relativeEndPoint, String apiVersion, String httpMethod) {
+    @Given("user call following restapi {string} with {string} page")
+    public void user_Call_Following_Restapi(String relativeEndPoint, String httpMethod) throws MalformedURLException {
         // embedTextInReport("Following endpoint with HTTP method");
         SoftAssertions softly = new SoftAssertions();
 
+        URL baseUrl = new URL(cucumberCtx.getBaseUrl());
+        URL url = new URL(baseUrl, environment.getProperty(relativeEndPoint));
 
-        String endPoint = createEndPoint(cucumberContextConfiguration.getBaseUrl(), cucumberContextConfiguration.getEndPointUrl(relativeEndPoint), "", "", apiVersion);
-        commonRequestSpecDto.setEndPoint(endPoint);
-        log.info(commonRequestSpecDto.getEndPoint());
-        softly.assertThat("shyam").isEqualTo("shyam");
+        commonRequestSpecDto.setEndPoint(url.toString());
+        response= cucumberCtx.getResponse(commonRequestSpecDto , HttpOperations.setOpertaion(httpMethod));
+        softly.assertThat(response.getStatusCode()).isEqualTo(200);
 
         softly.assertAll();
 

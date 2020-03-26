@@ -15,7 +15,13 @@ User can independently sort the result in any order. <br />
 User input closely mimic the enum of different choices objects( checkbox, dropdown etc).<br />
 Based on filterset, code get all the TV cards as TVInfoCard model. It creates Map of all the result set. Because TVcard is same object with different data so we have checked all of result in one scenario with great reusability<br />
 
-# Feature of Framework
+
+#  Feature of Framework
+## api
+schema validation support added <br />
+seperate model, httpoperation , requestspecification and test <br />
+
+## ui
 @DataTableType annotation used for typeRegister of ReviewFilter filters ( cucumber-4 to cucumber-5 improvement ) <br />
 Framework build to mimic domain language e.g. user can provide filter as a set of different filter options <br/>
 Abstract Page cater generic way to handle objects such as dropdown, check box, goto, wait properties <br />

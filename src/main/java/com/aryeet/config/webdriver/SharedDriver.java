@@ -108,6 +108,7 @@ public class SharedDriver extends EventFiringWebDriver {
                         System.out.println("Using default browser");
                         ChromeOptions options = new ChromeOptions();
                         options.setCapability("UNEXPECTED_ALERT_BEHAVIOUR", "ACCEPT");
+                        options.addArguments("--headless");
                         options.setCapability("unexpectedAlertBehaviour", "accept");
                         options.setCapability("CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR", "ACCEPT");
                         options.setCapability("UnexpectedAlertBehaviour", "ACCEPT");
