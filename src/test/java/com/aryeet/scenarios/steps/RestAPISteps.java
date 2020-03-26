@@ -1,9 +1,9 @@
 package com.aryeet.scenarios.steps;
 
-import com.aryeet.api.model.Employee;
 import com.aryeet.api.model.EmployeeListWithStatus;
 import com.aryeet.api.request.CommonRequestSpecDto;
 import com.aryeet.api.request.HttpOperations;
+import com.aryeet.api.verify.VerifyRules;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
@@ -17,6 +17,10 @@ import org.springframework.core.env.Environment;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RestAPISteps extends AbstractStepDefinition {
 
@@ -25,6 +29,8 @@ public class RestAPISteps extends AbstractStepDefinition {
     @Autowired
     private Environment environment;
 
+    @Autowired
+    private VerifyRules verifyRules;
 
     @Autowired
     private CucumberContextConfiguration cucumberCtx;
@@ -33,6 +39,8 @@ public class RestAPISteps extends AbstractStepDefinition {
     private CommonRequestSpecDto commonRequestSpecDto;
 
     private Response response;
+    SoftAssertions softly = new SoftAssertions();
+    EmployeeListWithStatus returnedEmps = null;
 
     @Before
     public void before(final Scenario scenario) {
@@ -43,24 +51,30 @@ public class RestAPISteps extends AbstractStepDefinition {
     @Given("user call following restapi {string} with {string} page")
     public void user_Call_Following_Restapi(String relativeEndPoint, String httpMethod) throws MalformedURLException {
         // embedTextInReport("Following endpoint with HTTP method");
-        SoftAssertions softly = new SoftAssertions();
 
         URL baseUrl = new URL(cucumberCtx.getBaseUrl());
         URL url = new URL(baseUrl, environment.getProperty(relativeEndPoint));
 
         commonRequestSpecDto.setEndPoint(url.toString());
-        response= cucumberCtx.getResponse(commonRequestSpecDto , HttpOperations.setOpertaion(httpMethod));
-        softly.assertThat(response.getStatusCode()).isEqualTo(200);
-
-        softly.assertAll();
+        response = cucumberCtx.getResponse(commonRequestSpecDto, HttpOperations.setOpertaion(httpMethod));
 
     }
 
 
     @Then("User should able to verify {string} tests")
     public void user_Call_Following_Restapi(String expectedResult) {
-        // embedTextInReport("Following endpoint with HTTP method");
 
+        returnedEmps = response.getBody().as(EmployeeListWithStatus.class);
+        // embedTextInReport("Following endpoint with HTTP method");
+        //Assertions
+        softly.assertThat(response.getStatusCode()).isEqualTo(200);
+
+        if (verifyRules.isRulePresent(expectedResult)) assertTrue(verifyRules.isRulePassed(expectedResult, response));
+
+        if (returnedEmps != null) softly.assertThat(returnedEmps.getEmployee().size()).isGreaterThan(1);
+
+
+        softly.assertAll();
 
     }
 

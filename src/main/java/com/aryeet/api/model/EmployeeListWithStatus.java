@@ -21,7 +21,7 @@ public class EmployeeListWithStatus {
     @JsonProperty("status")
     private String status;
     @JsonProperty("data")
-    private List<Employee> data = null;
+    private List<Employee> employee = null;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -36,13 +36,13 @@ public class EmployeeListWithStatus {
     }
 
     @JsonProperty("data")
-    public List<Employee> getData() {
-        return data;
+    public List<Employee> getEmployee() {
+        return employee;
     }
 
     @JsonProperty("data")
-    public void setData(List<Employee> data) {
-        this.data = data;
+    public void setEmployee(List<Employee> employee) {
+        this.employee = employee;
     }
 
     @JsonAnyGetter

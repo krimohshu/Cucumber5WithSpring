@@ -119,7 +119,7 @@ public class CucumberContextConfiguration {
         switch (ops) {
             case GET:
                 log.info("GET Call : " + request.getEndPoint());
-                response = requestSpecification.get(request.getEndPoint());
+                response = requestSpecification.header("ContentType","application/json").get(request.getEndPoint());
                 break;
             case PUT:
                 log.debug("PUT Call : " + request.getEndPoint());
