@@ -56,7 +56,8 @@ public class RestAPISteps extends AbstractStepDefinition {
         URL url = new URL(baseUrl, environment.getProperty(relativeEndPoint));
 
         commonRequestSpecDto.setEndPoint(url.toString());
-        response = cucumberCtx.getResponse(commonRequestSpecDto, HttpOperations.setOpertaion(httpMethod));
+        response = cucumberCtx.getResponse(commonRequestSpecDto, HttpOperations.setOpertaion(httpMethod) ,url );
+        System.out.println(response.getBody().asString());
 
     }
 
@@ -64,7 +65,7 @@ public class RestAPISteps extends AbstractStepDefinition {
     @Then("User should able to verify {string} tests")
     public void user_Call_Following_Restapi(String expectedResult) {
 
-        returnedEmps = response.getBody().as(EmployeeListWithStatus.class);
+       // returnedEmps = response.getBody().as(EmployeeListWithStatus.class);
         // embedTextInReport("Following endpoint with HTTP method");
         //Assertions
         softly.assertThat(response.getStatusCode()).isEqualTo(200);

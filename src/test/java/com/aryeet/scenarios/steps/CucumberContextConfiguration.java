@@ -25,6 +25,10 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+
 @SpringBootTest(webEnvironment=SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("qa")
@@ -113,13 +117,34 @@ public class CucumberContextConfiguration {
         return endpoint;
     }
 
-    protected Response getResponse(CommonRequestSpecDto request, HttpOperations ops){
+    protected Response getResponse(CommonRequestSpecDto request, HttpOperations ops, URL url){
         Response response=null;
+
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Accept", "*/*");
+//        headers.put("Cache-Control", "no-cache");
+//        headers.put("Postman-Token", "cc6e17df-4306-4990-8b0e-3389d1200619");
+        headers.put("Host", "dummy.restapiexample.com");
+        headers.put("Accept-Encoding", "gzip, deflate");
+        headers.put("Upgrade-Insecure-Requests", "1");
+        headers.put("Referrer Policy", "no-referrer-when-downgrade");
+      //  header("user-agent", "rest assured");
+        header("user-agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36");
+     //   header("User-Agent", "PostmanRuntime/7.20.1");
+     //   headers.put("Connection", "keep-alive");
+       // headers.put("Vary", "Accept-Encoding,X-APP-JSON");
+
+
 
         switch (ops) {
             case GET:
                 log.info("GET Call : " + request.getEndPoint());
-                response = requestSpecification.header("ContentType","application/json").get(request.getEndPoint());
+
+                response =     requestSpecification.headers(headers).get(request.getEndPoint());
+
+
+                response = requestSpecification.contentType("application/json;charset=utf-8")
+                        .header("ContentType","application/json").get(request.getEndPoint());
                 break;
             case PUT:
                 log.debug("PUT Call : " + request.getEndPoint());
