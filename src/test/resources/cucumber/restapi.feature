@@ -5,9 +5,9 @@ Feature: Testing Which? RESTapi calls
     Given user call following restapi "<endpoint>" with "<apiHttpMethod>" page
     Then User should able to verify "<expectedResult>" tests
     Examples: provided valid and invalid input
-      | apiHttpMethod | endpoint          | expectedResult |
-#      | GET           | EMPLOYEES_BASEURL | statuscode:200 |
-      | GET           | EMPLOYEES_BASEURL_WITHPARAM | response_VerifyEmployee_idx_;id:2 |
+      | apiHttpMethod | endpoint                    | expectedResult                    |
+      | GET           | EMPLOYEES_BASEURL           | statuscode:200                    |
+#      | GET           | EMPLOYEES_BASEURL_WITHPARAM | response_VerifyEmployee_idx_;id:2 |
 
   @whichone_restapi_2
   Scenario Outline: Test the restapi <apiHttpMethod>:<version><endpoint> verify "<expectedResult>" rule

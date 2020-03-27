@@ -29,7 +29,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-@SpringBootTest(webEnvironment=SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("qa")
 @EnableAutoConfiguration
@@ -44,9 +44,9 @@ public class CucumberContextConfiguration {
     @Autowired
     private ConfigurableEnvironment env;
 
-   /* @LocalServerPort
-    protected int port;
-*/
+    /* @LocalServerPort
+     protected int port;
+ */
     private RequestSpecification requestSpecification;
     private final String version;
 
@@ -117,8 +117,8 @@ public class CucumberContextConfiguration {
         return endpoint;
     }
 
-    protected Response getResponse(CommonRequestSpecDto request, HttpOperations ops, URL url){
-        Response response=null;
+    protected Response getResponse(CommonRequestSpecDto request, HttpOperations ops, URL url) {
+        Response response = null;
 
         Map<String, String> headers = new HashMap<>();
         headers.put("Accept", "*/*");
@@ -127,24 +127,22 @@ public class CucumberContextConfiguration {
         headers.put("Host", "dummy.restapiexample.com");
         headers.put("Accept-Encoding", "gzip, deflate");
         headers.put("Upgrade-Insecure-Requests", "1");
-        headers.put("Referrer Policy", "no-referrer-when-downgrade");
-      //  header("user-agent", "rest assured");
-        header("user-agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36");
-     //   header("User-Agent", "PostmanRuntime/7.20.1");
-     //   headers.put("Connection", "keep-alive");
-       // headers.put("Vary", "Accept-Encoding,X-APP-JSON");
-
+        //  header("user-agent", "rest assured");
+    //    header("user-agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36");
+        header("User-Agent", "PostmanRuntime/7.20.1");
+        //   headers.put("Connection", "keep-alive");
+        // headers.put("Vary", "Accept-Encoding,X-APP-JSON");
 
 
         switch (ops) {
             case GET:
                 log.info("GET Call : " + request.getEndPoint());
 
-                response =     requestSpecification.headers(headers).get(request.getEndPoint());
+                response = requestSpecification.headers(headers).get(request.getEndPoint());
 
 
                 response = requestSpecification.contentType("application/json;charset=utf-8")
-                        .header("ContentType","application/json").get(request.getEndPoint());
+                        .header("ContentType", "application/json").get(request.getEndPoint());
                 break;
             case PUT:
                 log.debug("PUT Call : " + request.getEndPoint());
@@ -164,8 +162,9 @@ public class CucumberContextConfiguration {
 
         return response;
     }
+
     @Given("hi")
-    public void hi(){
+    public void hi() {
 
     }
 
